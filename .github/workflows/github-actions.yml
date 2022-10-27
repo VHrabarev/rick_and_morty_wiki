@@ -11,7 +11,7 @@ on:
 jobs:
   test:
     name: Test
-    run-on: windows-latest
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -23,13 +23,13 @@ jobs:
   build:
     name: Build
     needs: test
-    run-on: windows-latest
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
       - run: echo "🍏 This job's status is ${{ job.status }}."
   deploy:
     name: Deploy
-    run-on: windows-latest
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
       - run: echo "🎉 This job's status is ${{ job.status }}."
