@@ -4,5 +4,5 @@ import Home from '.';
 
 it("Render title text", () => {
     render(<Home />);
-    expect(screen.getByText("Home")).toBeInTheDocument();
+    expect(screen.getByText("Home test")).toBeInTheDocument();
 });
