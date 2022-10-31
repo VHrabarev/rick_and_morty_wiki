@@ -66,7 +66,7 @@ const Header = function(props) {
                 </ButtonGroup>
                 <Box sx={{ flexGrow: 0 }}>
                     {auth === "anon" ? 
-                        <Button color="inherit">Login</Button> :
+                        <Link to="/login" className="link">Login</Link> :
                         <Tooltip title="Open settings">
                             <IconButton sx={{ p: 0 }} onClick={handleOpenUserMenu}>
                                 <Avatar alt="User avatar" src="" />
