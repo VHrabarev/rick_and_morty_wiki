@@ -8,4 +8,4 @@ const HeaderContainer = function(props) {
     return <Header auth={auth} pages={PAGES} settings={SETTINGS} />
 };
 
-export default connect(store => ({auth: "anon"}))(HeaderContainer);
+export default connect(store => ({auth: store.auth.user.authStatus}))(HeaderContainer);
