@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Login from "../components/Login";
-import { userLogin } from "../store/actions/authActions.js";
+import {userLogin} from "../store/reducers/authReducer.js";
 
 const LoginContainer = function(props) {
     const {login} = props;

@@ -4,16 +4,19 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 const Header = function(props) {
-    const {auth, pages = [], settings = []} = props;
+    const {auth, pages = [], settings = [], logout} = props;
     const [drawerNavMenu, setDrawerNavMenu] = useState(false);
     const [anchorElUser, setAnchorElUser] = useState(null);
 
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
     };
-  
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
+    };
+    const handleLogout = () => {
+        setAnchorElUser(null);
+        logout();
     };
 
     return (
@@ -95,7 +98,7 @@ const Header = function(props) {
                             </MenuItem>
                         ))}
                         <Divider />
-                        <MenuItem onClick={handleCloseUserMenu}>
+                        <MenuItem onClick={handleLogout}>
                             <Typography textAlign="center">Logout</Typography>
                         </MenuItem>
                     </Menu>

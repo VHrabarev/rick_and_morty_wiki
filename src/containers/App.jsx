@@ -1,10 +1,10 @@
 import { connect } from "react-redux";
 import App from "../components/App";
-import {checkUserLoginStatus} from "../store/reducers/authReducer.js";
+import { checkUserLoginStatus } from "../store/reducers/authReducer.js";
 
 const AppContainer = function(props) {
-    const {checkUserLoginStatus} = props;
-    return <App checkUserLoginStatus={checkUserLoginStatus} />
+    const {checkUser} = props;
+    return <App checkUser={checkUser}/>
 };
 
-export default connect(store => ({}), {checkUserLoginStatus})(AppContainer);
+export default connect(store => ({}), {checkUser: checkUserLoginStatus})(AppContainer);

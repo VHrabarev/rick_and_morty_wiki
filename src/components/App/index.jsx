@@ -4,9 +4,9 @@ import Main from "../../containers/Main.jsx";
 import Footer from "../../containers/Footer.jsx";
 
 const App = function(props) {
-    const {checkUserLoginStatus} = props;
+    const {checkUser} = props;
     useEffect(() => {
-
+        checkUser();
     }, []);
     return (
         <>
