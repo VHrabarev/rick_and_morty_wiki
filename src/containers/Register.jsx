@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import Register from "../components/Register";
+import {userFullRegistet} from "../store/reducers/authReducer.js";
 
 const RegisterContainer = function(props) {
     const {register} = props;
@@ -7,4 +8,4 @@ const RegisterContainer = function(props) {
     return <Register register={register} />;
 };
 
-export default connect(store => ({}), { register: () => console.log("Мок") })(RegisterContainer);
+export default connect(store => ({}), { register: userFullRegistet })(RegisterContainer);
