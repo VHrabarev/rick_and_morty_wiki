@@ -1,4 +1,4 @@
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile } from "firebase/auth";
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import app from "../../api/firebase";
 
@@ -9,7 +9,20 @@ const userRegister = createAsyncThunk(
             const auth = getAuth(app);
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             return userCredential.user;
-        } catch(error) {
+        } catch (error) {
+            return rejectWithValue(error.code);
+        };
+    },
+);
+
+const userUpdateNameAndPhoto = createAsyncThunk(
+    "auth/userUpdateNameAndPhoto",
+    async function({displayName, photoURL}, {rejectWithValue}) {
+        try {
+            const auth = getAuth(app);
+            const result = await updateProfile(auth.currentUser, {displayName, photoURL});
+            console.log(result);
+        } catch (error) {
             return rejectWithValue(error.code);
         };
     },
@@ -17,10 +30,11 @@ const userRegister = createAsyncThunk(
 
 const userFullRegistet = createAsyncThunk(
     "auth/userFullRegistet",
-    async function({email, password}, {dispatch, rejectWithValue}) {
+    async function({email, password, displayName, photoURL}, {dispatch, rejectWithValue}) {
         try {
             await dispatch(userRegister({email, password}));
-        } catch(error) {
+            await dispatch(userUpdateNameAndPhoto({displayName, photoURL}));
+        } catch (error) {
             return rejectWithValue(error.code);
         };
     },
@@ -28,13 +42,9 @@ const userFullRegistet = createAsyncThunk(
 
 const userLogout = createAsyncThunk(
     "auth/Logout",
-    async function(_, {rejectWithValue}) {
-        try {
-            const auth = getAuth(app);
-            await signOut(auth);
-        } catch(error) {
-            return rejectWithValue(error.message);
-        };
+    async function() {
+        const auth = getAuth(app);
+        await signOut(auth);
     },
 );
 
@@ -97,4 +107,4 @@ const authReducer = authSlice.reducer;
 const {addUserInfo} = authSlice.actions;
 
 export default authReducer;
-export {userRegister, userLogout, userFullRegistet, checkUserLoginStatus, userLogin};
+export {userLogout, userFullRegistet, checkUserLoginStatus, userLogin};

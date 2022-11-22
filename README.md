@@ -1,6 +1,5 @@
 # Rick and Morty wiki (in-progress)
-    Rick and Morty wiki - this is a website where you can find any information about your favorite
-series "Rick and Morty".
+Rick and Morty wiki - this is a website where you can find any information about your favorite series "Rick and Morty".
 
 ## Technologies
 1. React
@@ -15,8 +14,7 @@ The application is completely written in the React.js library, storage is handle
 1. Sign-in/Sing-up
 
 ## CI/CD
-The project supports full continuous integration and continuous delivery process. 
-Using github action, all basic settings are described in the yaml file at .github/workflows
+The project supports full continuous integration and continuous delivery process. Using github action, all basic settings are described in the yaml file at .github/workflows
 
 <pre>
 name: Full CI/CD
@@ -54,8 +52,9 @@ jobs:
           NETLIFY_DEPLOY_MESSAGE: "Prod deploy v${{ github.ref }}"
           NETLIFY_DEPLOY_TO_PROD: true
 </pre>
-The are two jobs "Test" and "Deploy". The "Test" job runs tests in all files with extension test.jsx/test.js
-The "Deploy" job has some settings for deploy build to the server.
+
+The are two jobs "Test" and "Deploy". The "Test" job runs tests in all files with extension test.jsx/test.js. The "Deploy" job has some settings for deploy build to the server.
+
 <table>
     <thead>
         <tr>

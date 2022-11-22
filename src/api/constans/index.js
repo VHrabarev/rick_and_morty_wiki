@@ -4,5 +4,6 @@ const PAGES = [
     {name: "Settings", link: "/settings"},
 ];
 const SETTINGS  = [];
+const BACKGROUND_URL = "https://rickandmortyapi.com";
 
-export {PAGES, SETTINGS};
+export {PAGES, SETTINGS, BACKGROUND_URL};
