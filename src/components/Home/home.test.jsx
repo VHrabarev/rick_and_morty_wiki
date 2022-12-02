@@ -4,7 +4,8 @@ import { Provider } from 'react-redux';
 import Home from '.';
 import store from "../../store";
 
-it("Render title text", () => {
+test("Home component render", () => {
     render(<Provider store={store}><Home /></Provider>);
-    expect(screen.getByText("Main")).toBeInTheDocument();
+    const titleText = screen.getByText("Home");
+    expect(titleText).toBeInTheDocument();
 });

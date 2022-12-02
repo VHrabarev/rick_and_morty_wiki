@@ -33,13 +33,13 @@ const Home = function(props) {
 
     return (
         <Box component="section">
-            <Typography component="h2" variant="h6">Main</Typography>
-            <BottomNavigation value={valueNavigation} onChange={handleChangeNavigation}>
+            <Typography component="h2" className="visually-hidden">Home</Typography>
+            <BottomNavigation value={valueNavigation} onChange={handleChangeNavigation} sx={{ mb: 2 }}>
                 <BottomNavigationAction label="Characters" value="characters" icon={<AccessibilityNewIcon />} />
                 <BottomNavigationAction label="Locations" value="locations" icon={<RoomIcon />} />
                 <BottomNavigationAction label="Episodes" value="episodes" icon={<PhotoLibraryIcon />} />
             </BottomNavigation>
-            {pending ? <Backdrop /> : <CardList cards={cards} />}
+            {pending ? <Backdrop /> : <CardList cards={cards} url={valueNavigation} />}
             <Pagination count={pages} page={page} sx={{ display: "flex", justifyContent: "center" }} onChange={handleChangePage}/>
         </Box>
     );
