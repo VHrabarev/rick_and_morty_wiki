@@ -5,7 +5,7 @@ import Profile from "../../containers/Profile.jsx";
 import Login from "../../containers/Login.jsx";
 import Register from "../../containers/Register.jsx";
 import Character from "../../containers/Character.jsx";
-import Episod from "../../containers/Episod.jsx";
+import Episode from "../../containers/Episode.jsx";
 import Location from "../../containers/Location.jsx";
 
 const Main = function() {
@@ -18,7 +18,7 @@ const Main = function() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/characters/:id" element={<Character />} />
-                <Route path="/episodes/:id" element={<Episod />} />
+                <Route path="/episodes/:id" element={<Episode />} />
                 <Route path="/locations/:id" element={<Location />} />
             </Routes>
         </Container>

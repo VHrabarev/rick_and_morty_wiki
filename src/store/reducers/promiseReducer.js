@@ -73,11 +73,92 @@ const getAllEpisodes = createAsyncThunk(
     },
 );
 
+const getCharacterById = createAsyncThunk(
+    "promise/getCharacterById",
+    async function({id}, {rejectWithValue}) {
+        try {
+            const result = await GQL(
+                `query findOneCharacterDyId($id:ID!) {
+                    character(id: $id) {
+                        id,name,status,species,type,gender,image,created
+                        origin {
+                            id,name
+                        },
+                        location {
+                            id,name
+                        },
+                        episode {
+                            id,name,air_date,episode,created,
+                            characters {
+                                id,name,image
+                            },
+                        },
+                    }
+                }`,
+                {id}
+            );
+            return result.data.character;
+        } catch (error) {
+            return rejectWithValue(error.text);
+        };
+    },
+);
+
+const getEpisodeById = createAsyncThunk(
+    "promise/getEpisodeById",
+    async function({id}, {rejectWithValue}) {
+        try {
+            const result = await GQL(
+                `query findOneEpisodeById($id:ID!) {
+                    episode(id:$id) {
+                        id,name,air_date,episode,created,
+                        characters {
+                            id,name,image
+                        }
+                    }
+                }`,
+                {id}
+            );
+            return result.data.episode;
+        } catch (error) {
+            return rejectWithValue(error.text);
+        };
+    },
+);
+
+const getLocationById = createAsyncThunk(
+    "promise/getLocationBuId",
+    async function({id}, {rejectWithValue}) {
+        try {
+            const result = await GQL(
+                `query findOneLocationById($id:ID!) {
+                    location(id:$id) {
+                        id,name,type,dimension,created,
+                        residents {
+                            id,name,image
+                        }
+                    }
+                }`,
+                {id}
+            );
+            return result.data.location;
+        } catch (error) {
+            return rejectWithValue(error.text);
+        };
+    },
+);
+
 const initialState = {
     cards: [],
+    character: {},
+    location: {},
+    episode: {},
     pages: 0,
     pending: {
         getAll: false,
+        character: false,
+        location: false,
+        episode: false,
     },
     error: {
         status: false,
@@ -146,10 +227,55 @@ const promiseSlice = createSlice({
             store.pending.getAll = false;
             store.error = { status: true, message: action.payload };
         },
+        [getCharacterById.fulfilled]: (store, action) => {
+            store.character = action.payload;
+            store.pending.character = false;
+            store.error = { status: false, message: "" };
+        },
+        [getCharacterById.pending]: (store) => {
+            store.character = {};
+            store.pending.character = true;
+            store.error = { status: false, message: "" };
+        },
+        [getCharacterById.rejected]: (store, action) => {
+            store.character = {};
+            store.pending.character = false;
+            store.error = { status: true, message: action.payload };
+        },
+        [getLocationById.fulfilled]: (store, action) => {
+            store.location = action.payload;
+            store.pending.location = false;
+            store.error = { status: false, message: "" };
+        },
+        [getLocationById.pending]: (store) => {
+            store.location = {};
+            store.pending.location = true;
+            store.error = { status: false, message: "" };
+        },
+        [getLocationById.rejected]: (store, action) => {
+            store.location = {};
+            store.pending.location = false;
+            store.error = { status: true, message: action.payload };
+        },
+        [getEpisodeById.fulfilled]: (store, action) => {
+            store.episode = action.payload;
+            store.pending.episode = false;
+            store.error = { status: false, message: "" };
+        },
+        [getEpisodeById.pending]: (store) => {
+            store.episode = {};
+            store.pending.episode = true;
+            store.error = { status: false, message: "" };
+        },
+        [getEpisodeById.rejected]: (store, action) => {
+            store.episode = {};
+            store.pending.episode = false;
+            store.error = { status: true, message: action.payload };
+        },
     },
 });
 
 const promiseReducer = promiseSlice.reducer;
 
 export default promiseReducer;
-export {getAllCharacters, getAllLocations, getAllEpisodes};
+export {getAllCharacters, getAllLocations, getAllEpisodes, getCharacterById, getEpisodeById, getLocationById};
