@@ -21,9 +21,6 @@ const CardList = function(props) {
                                 />}
                                 <CardContent>
                                     <Typography gutterBottom variant="h5" component="div">{card.name}</Typography>
-                                    <Typography variant="body2" color="text.secondary">
-                                        {card.created}
-                                    </Typography>
                                 </CardContent>
                                 <CardActions>
                                     <Link to={`${url}/${card.id}`} className="link"> 

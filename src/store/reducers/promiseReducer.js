@@ -12,7 +12,7 @@ const getAllCharacters = createAsyncThunk(
                             pages,count
                         }
                         results{
-                            name,image,created,id
+                            name,image,id
                         }
                     }
                 }`, 
@@ -36,7 +36,7 @@ const getAllLocations = createAsyncThunk(
                             pages,count
                         }
                         results{
-                            name,created,id
+                            name,id
                         }
                     }
                 }`, 
@@ -60,7 +60,7 @@ const getAllEpisodes = createAsyncThunk(
                             pages,count
                         }
                         results{
-                            name,created,id
+                            name,id
                         }
                     }
                 }`, 
@@ -80,7 +80,7 @@ const getCharacterById = createAsyncThunk(
             const result = await GQL(
                 `query findOneCharacterDyId($id:ID!) {
                     character(id: $id) {
-                        id,name,status,species,type,gender,image,created
+                        id,name,status,species,type,gender,image,
                         origin {
                             id,name
                         },
@@ -88,10 +88,7 @@ const getCharacterById = createAsyncThunk(
                             id,name
                         },
                         episode {
-                            id,name,air_date,episode,created,
-                            characters {
-                                id,name,image
-                            },
+                            id,name,episode
                         },
                     }
                 }`,
@@ -111,7 +108,7 @@ const getEpisodeById = createAsyncThunk(
             const result = await GQL(
                 `query findOneEpisodeById($id:ID!) {
                     episode(id:$id) {
-                        id,name,air_date,episode,created,
+                        id,name,air_date,episode,
                         characters {
                             id,name,image
                         }
@@ -133,7 +130,7 @@ const getLocationById = createAsyncThunk(
             const result = await GQL(
                 `query findOneLocationById($id:ID!) {
                     location(id:$id) {
-                        id,name,type,dimension,created,
+                        id,name,type,dimension,
                         residents {
                             id,name,image
                         }
@@ -148,10 +145,35 @@ const getLocationById = createAsyncThunk(
     },
 );
 
+const defaultCharacter = {
+    image: "",
+    name: "character name",
+    status: "character status",
+    species: "character species",
+    gender: "character gender",
+    location: {
+        id: 0,
+        name: "location name",
+    },
+    origin: {
+        id: 0,
+        name: "origin name",
+    },
+    episode: [{id: 0, name: "episode name"}],
+};
+
+const defaultLocation = {
+    name: "location name",
+    dimension: "dimension name",
+    id: 0,
+    residents: [{ id: 0, image: "residents image", name: "resident name" }],
+    type: "location type",
+};
+
 const initialState = {
     cards: [],
-    character: {},
-    location: {},
+    character: defaultCharacter,
+    location: defaultLocation,
     episode: {},
     pages: 0,
     pending: {
