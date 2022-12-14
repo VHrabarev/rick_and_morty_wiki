@@ -170,11 +170,19 @@ const defaultLocation = {
     type: "location type",
 };
 
+const defaultEpisode = {
+    name: "episode name",
+    id: 0,
+    air_date: "Episode air date",
+    episode: "Episode code",
+    characters: [{id: 0, name: "Character name", image: "Character image"}],
+};
+
 const initialState = {
     cards: [],
     character: defaultCharacter,
     location: defaultLocation,
-    episode: {},
+    episode: defaultEpisode,
     pages: 0,
     pending: {
         getAll: false,
