@@ -81,8 +81,8 @@ const Header = function(props) {
                         id="menu-appbar"
                         anchorEl={anchorElUser}
                         anchorOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right',
+                            vertical: 'top',
+                            horizontal: 'right',
                         }}
                         keepMounted
                         transformOrigin={{
