@@ -14,10 +14,10 @@ const Main = function() {
         <ProtectedRoute usersFor={["user"]} redirect="/login" children={<Profile />} />
     );
     const protectedLogin = (
-        <ProtectedRoute userFor={["anon"]} redirect="/profile" children={<Login />} />
+        <ProtectedRoute usersFor={["anon"]} redirect="/profile" children={<Login />} />
     );
     const protectedRegister = (
-        <ProtectedRoute userFor={["anon"]} redirect="/profile" children={<Register />}/>
+        <ProtectedRoute usersFor={["anon"]} redirect="/profile" children={<Register />} />
     );
     return (
         <Container maxWidth="md" component="main" sx={{ pt: 4 }}>

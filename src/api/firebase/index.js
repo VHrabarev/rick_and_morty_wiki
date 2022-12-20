@@ -1,12 +1,12 @@
 import { initializeApp } from 'firebase/app';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAgyY9zhFJksd6Y2qaY0Pre9sl--Z6snx8",
-    authDomain: "rick-and-morty-wiki-e7b5d.firebaseapp.com",
-    projectId: "rick-and-morty-wiki-e7b5d",
-    storageBucket: "rick-and-morty-wiki-e7b5d.appspot.com",
-    messagingSenderId: "116590371439",
-    appId: "1:116590371439:web:a4e47c76ced9cec616a39a"
+    apiKey: "AIzaSyAM0MrqgBY0n3jilmMErDtcb79FMIXb5_E",
+    authDomain: "mystudyproject-8a3c8.firebaseapp.com",
+    projectId: "mystudyproject-8a3c8",
+    storageBucket: "mystudyproject-8a3c8.appspot.com",
+    messagingSenderId: "223485523493",
+    appId: "1:223485523493:web:bf4582a21480714e6ff1cc"
 };
 
 const app = initializeApp(firebaseConfig);

@@ -1,7 +1,7 @@
 import { Navigate } from 'react-router-dom';
 
 const ProtectedRoute = function(props) {
-    const {auth, usersFor, children, redirect} = props;
+    const {auth, usersFor = ["anon"], children, redirect = ""} = props;
 
     if(usersFor.includes(auth)) {
         return children;
