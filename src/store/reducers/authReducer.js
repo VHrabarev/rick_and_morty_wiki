@@ -75,10 +75,19 @@ const userLogin = createAsyncThunk(
     },
 );
 
+const userDefault = {
+    displayName: "Anon",
+    email: "anon@summail.com",
+    emailVerified: false,
+    metadata: { createdAt: "1671543754447" },
+    phoneNumber: "",
+    photoURL: "",
+};
+
 const initialState = {
     user: {
         authStatus: "anon",
-        userInfo: {},
+        userInfo: userDefault,
     },
 };
 

@@ -8,11 +8,13 @@ const cards = [
         name: "name_1",
         created: "created_1",
         image: "image_1",
+        id: 1,
     },
     {
         name: "name_2",
         created: "created_2",
         image: "image_2",
+        id: 2,
     },
 ];
 

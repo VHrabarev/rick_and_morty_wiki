@@ -5,7 +5,15 @@ import SecondTab from "./Tabs/SecondTab.jsx";
 import ThirdTab from "./Tabs/ThirdTab.jsx";
 
 const Profile = function(props) {
-    const {userInfo} = props;
+    const userDefault = {
+        displayName: "Anon",
+        email: "anon@summail.com",
+        emailVerified: false,
+        metadata: { createdAt: "1671543754447" },
+        phoneNumber: "",
+        photoURL: "",
+    };
+    const {userInfo = userDefault} = props;
     const [value, setValue] = useState(0);
 
     const headProfileWrapperStyle = { display: "flex", flexWrap: "nowrap", justifyContent: "space-between", backgroundColor: "#e7e7e7", borderRadius: 2, p: "12px 24px", mb: 2 };
@@ -15,11 +23,11 @@ const Profile = function(props) {
         setValue(newValue);
     };
 
-    const tabs = {
-        0: <FirstTab userInfo={userInfo} />,
-        1: <SecondTab />,
-        2: <ThirdTab />,
-    };
+    const tabs = [
+        { label: "Profile info", tab: <FirstTab userInfo={userInfo} /> },
+        { label: "My favourite", tab: <SecondTab /> },
+        { label: "Else", tab: <ThirdTab /> },
+    ];
 
     return (
         <Box component="section">
@@ -39,12 +47,14 @@ const Profile = function(props) {
             </Box>
             <Box sx={mainContentWrapperStyle}>
                 <Tabs value={value} onChange={handleChange} aria-label="menu">
-                    <Tab label="Profile info" />
-                    <Tab label="My favourite" />
-                    <Tab label="Else" />
+                    {tabs.map( tab => {
+                        return (
+                            <Tab label={tab.label} key={tab.label} />
+                        );
+                    })}
                 </Tabs>
                 <Box sx={{ p: "12px 24px" }}>
-                    {tabs[value]}
+                    {tabs[value].tab}
                 </Box>
             </Box>
         </Box>
